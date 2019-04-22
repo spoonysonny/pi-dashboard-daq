@@ -756,14 +756,20 @@ $(document).ready(function() {
             $("#sensor-rain").text(window.dashboard_sensor[1]);
             $("#sensor-soil-humidity").text(window.dashboard_sensor[0]);
 
-            if(window.dashboard_sensor[6] < 30)
-                $("#sensor-sound").text('静谧');
-            if(window.dashboard_sensor[6] > 30)
+            if(window.dashboard_sensor[6] < 20)
+                $("#sensor-sound").text('极静');
+            if(window.dashboard_sensor[6] > 20)
                 $("#sensor-sound").text('安静');
-            if(window.dashboard_sensor[6] > 100)
-                $("#sensor-sound").text('噪声');
-            if(window.dashboard_sensor[6] > 200)
+            if(window.dashboard_sensor[6] > 40)
+                $("#sensor-sound").text('较静');
+            if(window.dashboard_sensor[6] > 70)
+                $("#sensor-sound").text('较吵');
+            if(window.dashboard_sensor[6] > 90)
+                $("#sensor-sound").text('很吵');
+            if(window.dashboard_sensor[6] > 110)
                 $("#sensor-sound").text('极吵');
+            if(window.dashboard_sensor[6] > 130)
+                $("#sensor-sound").text('难忍');
 
             if(window.dashboard_sensor[5] < 0)
                 $("#sensor-temp").text('冻');
