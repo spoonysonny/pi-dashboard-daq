@@ -1,10 +1,11 @@
 <?php
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'device.php');
+require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php');
 ?>
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>MCC Dashboard</title>
+    <title>Pi Dashboard DAQ</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -21,6 +22,7 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'device.php');
     <script src="assets/exporting.js"></script>
     <script src="assets/bootstrap.min.js"></script>
     <script language="JavaScript">
+        window.sensor_api_url = '<?php echo SENSOR_API_URL; ?>';
         window.dashboard_old = null;
         window.dashboard = null;
         var init_vals = eval('('+"{'mem': {'total':<?php echo($D['mem']['total']) ?>,'swap':{'total':<?php echo($D['mem']['swap']['total']) ?>}}, 'disk': {'total':<?php echo($D['disk']['total']) ?>}, 'net': { 'count': <?php echo($D['net']['count']) ?>} }"+')');
@@ -43,7 +45,7 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'device.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Pi Dashboard</a>
+                <a class="navbar-brand" href="#">Pi Dashboard DAQ</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -52,8 +54,7 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'device.php');
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a target="_blank" href="http://maker.quwj.com/project/10">Pi Dashboard</a></li>
-                            <li><a target="_blank" href="https://github.com/spoonysonny/pi-dashboard">GitHub Source</a></li>
+                            <li><a target="_blank" href="https://github.com/spoonysonny/pi-dashboard-daq">GitHub Source</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -375,7 +376,7 @@ require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'device.php');
             <div class="col-md-12">
                 <div id="footer">
                     <hr style="margin: 20px 0 10px 0;" />
-                    <p class="pull-left" style="font-size: 12px;">Powered by <a target="_blank" href="http://maker.quwj.com/project/10"><strong>Pi Dashboard</strong></a> v<?php echo($D['version']) ?>, <a target="_blank" href="http://www.nxez.com">NXEZ.com</a> all rights reserved.
+                    <p class="pull-left" style="font-size: 12px;">Powered by <a target="_blank" href="https://make.quwj.com/project/10"><strong>Pi Dashboard</strong></a> v<?php echo($D['version']) ?>, <a target="_blank" href="https://www.nxez.com">NXEZ.com</a> all rights reserved.
                     </p>
                 </div>
             </div>

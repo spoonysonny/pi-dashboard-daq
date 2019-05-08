@@ -4,7 +4,7 @@
  * Licensed under the GPL v3.0 license.
  */
 $(document).ready(function() {
-    var SENSOR_API_URL = 'http://192.168.1.42:8080/?ajax=true';
+    var SENSOR_API_URL = window.sensor_api_url;
     Highcharts.setOptions({
         global: {
             useUTC: false
@@ -417,7 +417,7 @@ $(document).ready(function() {
     var chartSensorSound = Highcharts.chart('container-sensor-sound', Highcharts.merge(gaugeOptions, {
         yAxis: {
             min: 0,
-            max: 330,
+            max: 200,
             title: {
                 text: ''
             }
@@ -694,6 +694,8 @@ $(document).ready(function() {
                 data[i] = Math.round(330-(data[i])*100,0);
             }
 
+            //data[6] = data[6] - 155;
+
             /*
             $("#time").text(newDate.format('hh:mm:ss'));
             $("#date").text(newDate.format('yyyy-MM-dd'));
@@ -757,75 +759,73 @@ $(document).ready(function() {
             $("#sensor-soil-humidity").text(window.dashboard_sensor[0]);
 
             if(window.dashboard_sensor[6] < 20)
-                $("#sensor-sound").text('极静');
+                $("#sensor-sound-desc").text('极静');
             if(window.dashboard_sensor[6] > 20)
-                $("#sensor-sound").text('安静');
+                $("#sensor-sound-desc").text('安静');
             if(window.dashboard_sensor[6] > 40)
-                $("#sensor-sound").text('较静');
+                $("#sensor-sound-desc").text('较静');
             if(window.dashboard_sensor[6] > 70)
-                $("#sensor-sound").text('较吵');
+                $("#sensor-sound-desc").text('较吵');
             if(window.dashboard_sensor[6] > 90)
-                $("#sensor-sound").text('很吵');
+                $("#sensor-sound-desc").text('很吵');
             if(window.dashboard_sensor[6] > 110)
-                $("#sensor-sound").text('极吵');
+                $("#sensor-sound-desc").text('极吵');
             if(window.dashboard_sensor[6] > 130)
-                $("#sensor-sound").text('难忍');
+                $("#sensor-sound-desc").text('难忍');
 
             if(window.dashboard_sensor[5] < 0)
-                $("#sensor-temp").text('冻');
+                $("#sensor-temp-desc").text('冻');
             if(window.dashboard_sensor[5] > 0)
-                $("#sensor-temp").text('冷');
+                $("#sensor-temp-desc").text('冷');
             if(window.dashboard_sensor[5] > 15)
-                $("#sensor-temp").text('舒适');
+                $("#sensor-temp-desc").text('舒适');
             if(window.dashboard_sensor[5] > 25)
-                $("#sensor-temp").text('炎热');
+                $("#sensor-temp-desc").text('炎热');
 
-            if(window.dashboard_sensor[4] < 30)
-                $("#sensor-light").text('黑暗');
-            if(window.dashboard_sensor[4] > 30)
-                $("#sensor-light").text('偏暗');
-            if(window.dashboard_sensor[4] > 100)
-                $("#sensor-light").text('明亮');
-            if(window.dashboard_sensor[4] > 200)
-                $("#sensor-light").text('强光');
+            if(window.dashboard_sensor[4] < 90)
+                $("#sensor-light-desc").text('黑暗');
+            if(window.dashboard_sensor[4] > 180)
+                $("#sensor-light-desc").text('偏暗');
+            if(window.dashboard_sensor[4] > 280)
+                $("#sensor-light-desc").text('明亮');
+            if(window.dashboard_sensor[4] > 320)
+                $("#sensor-light-desc").text('强光');
 
             if(window.dashboard_sensor[3] < 30)
-                $("#sensor-hall").text('无磁');
+                $("#sensor-hall-desc").text('无磁');
             if(window.dashboard_sensor[3] > 30)
-                $("#sensor-hall").text('微弱');
+                $("#sensor-hall-desc").text('微弱');
             if(window.dashboard_sensor[3] > 100)
-                $("#sensor-hall").text('较强');
+                $("#sensor-hall-desc").text('较强');
             if(window.dashboard_sensor[3] > 200)
-                $("#sensor-hall").text('极强');
+                $("#sensor-hall-desc").text('极强');
 
             if(window.dashboard_sensor[2] < 30)
-                $("#sensor-fire").text('安全');
+                $("#sensor-fire-desc").text('安全');
             if(window.dashboard_sensor[2] > 30)
-                $("#sensor-fire").text('较强');
+                $("#sensor-fire-desc").text('较强');
             if(window.dashboard_sensor[2] > 100)
-                $("#sensor-fire").text('危险');
+                $("#sensor-fire-desc").text('危险');
             if(window.dashboard_sensor[2] > 200)
-                $("#sensor-fire").text('极度危险');
+                $("#sensor-fire-desc").text('极度危险');
 
             if(window.dashboard_sensor[1] < 30)
-                $("#sensor-rain").text('晴');
+                $("#sensor-rain-desc").text('晴');
             if(window.dashboard_sensor[1] > 30)
-                $("#sensor-rain").text('潮湿');
+                $("#sensor-rain-desc").text('潮湿');
             if(window.dashboard_sensor[1] > 100)
-                $("#sensor-rain").text('中雨');
+                $("#sensor-rain-desc").text('中雨');
             if(window.dashboard_sensor[1] > 200)
-                $("#sensor-rain").text('大雨');
+                $("#sensor-rain-desc").text('大雨');
 
             if(window.dashboard_sensor[0] < 30)
-                $("#sensor-soil-humidity").text('干燥');
+                $("#sensor-soil-humidity-desc").text('干燥');
             if(window.dashboard_sensor[0] > 30)
-                $("#sensor-soil-humidity").text('微湿');
+                $("#sensor-soil-humidity-desc").text('微湿');
             if(window.dashboard_sensor[0] > 100)
-                $("#sensor-soil-humidity").text('潮湿');
+                $("#sensor-soil-humidity-desc").text('潮湿');
             if(window.dashboard_sensor[0] > 200)
-                $("#sensor-soil-humidity").text('极湿');
-
-
+                $("#sensor-soil-humidity-desc").text('极湿');
 
             // Speed
             var point;
